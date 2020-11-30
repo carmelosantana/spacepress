@@ -1,8 +1,8 @@
 <?php
 /**
- * _s Theme Customizer
+ * SpacePress Theme Customizer
  *
- * @package _s
+ * @package SpacePress
  */
 
 /**
