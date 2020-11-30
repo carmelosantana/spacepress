@@ -12,7 +12,7 @@ if ( ! defined( 'SPACEPRESS_VERSION' ) ) {
 	define( 'SPACEPRESS_VERSION', '1.0.0' );
 }
 
-if ( ! function_exists( 'spacepresssetup' ) ) :
+if ( ! function_exists( 'spacepress_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -20,7 +20,7 @@ if ( ! function_exists( 'spacepresssetup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function spacepresssetup() {
+	function spacepress_setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -75,7 +75,7 @@ if ( ! function_exists( 'spacepresssetup' ) ) :
 		add_theme_support(
 			'custom-background',
 			apply_filters(
-				'spacepresscustom_background_args',
+				'spacepress_custom_background_args',
 				array(
 					'default-color' => 'ffffff',
 					'default-image' => '',
@@ -102,7 +102,7 @@ if ( ! function_exists( 'spacepresssetup' ) ) :
 		);
 	}
 endif;
-add_action( 'after_setup_theme', 'spacepresssetup' );
+add_action( 'after_setup_theme', 'spacepress_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -111,17 +111,17 @@ add_action( 'after_setup_theme', 'spacepresssetup' );
  *
  * @global int $content_width
  */
-function spacepresscontent_width() {
-	$GLOBALS['content_width'] = apply_filters( 'spacepresscontent_width', 640 );
+function spacepress_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'spacepress_content_width', 640 );
 }
-add_action( 'after_setup_theme', 'spacepresscontent_width', 0 );
+add_action( 'after_setup_theme', 'spacepress_content_width', 0 );
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function spacepresswidgets_init() {
+function spacepress_widgets_init() {
 	register_sidebar(
 		array(
 			'name'          => esc_html__( 'Sidebar', 'spacepress' ),
@@ -134,12 +134,12 @@ function spacepresswidgets_init() {
 		)
 	);
 }
-add_action( 'widgets_init', 'spacepresswidgets_init' );
+add_action( 'widgets_init', 'spacepress_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function spacepressscripts() {
+function spacepress_scripts() {
 	wp_enqueue_style( 'spacepress-style', get_stylesheet_uri(), array(), SPACEPRESS_VERSION );
 	wp_style_add_data( 'spacepress-style', 'rtl', 'replace' );
 
@@ -149,7 +149,7 @@ function spacepressscripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'spacepressscripts' );
+add_action( 'wp_enqueue_scripts', 'spacepress_scripts' );
 
 /**
  * Implement the Custom Header feature.

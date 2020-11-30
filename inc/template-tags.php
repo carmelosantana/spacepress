@@ -7,11 +7,11 @@
  * @package SpacePress
  */
 
-if ( ! function_exists( 'spacepressposted_on' ) ) :
+if ( ! function_exists( 'spacepress_posted_on' ) ) :
 	/**
 	 * Prints HTML with meta information for the current post-date/time.
 	 */
-	function spacepressposted_on() {
+	function spacepress_posted_on() {
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -36,11 +36,11 @@ if ( ! function_exists( 'spacepressposted_on' ) ) :
 	}
 endif;
 
-if ( ! function_exists( 'spacepressposted_by' ) ) :
+if ( ! function_exists( 'spacepress_posted_by' ) ) :
 	/**
 	 * Prints HTML with meta information for the current author.
 	 */
-	function spacepressposted_by() {
+	function spacepress_posted_by() {
 		$byline = sprintf(
 			/* translators: %s: post author. */
 			esc_html_x( 'by %s', 'post author', 'spacepress' ),
@@ -52,11 +52,11 @@ if ( ! function_exists( 'spacepressposted_by' ) ) :
 	}
 endif;
 
-if ( ! function_exists( 'spacepressentry_footer' ) ) :
+if ( ! function_exists( 'spacepress_entry_footer' ) ) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
 	 */
-	function spacepressentry_footer() {
+	function spacepress_entry_footer() {
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
 			/* translators: used between list items, there is a space after the comma */
@@ -112,14 +112,14 @@ if ( ! function_exists( 'spacepressentry_footer' ) ) :
 	}
 endif;
 
-if ( ! function_exists( 'spacepresspost_thumbnail' ) ) :
+if ( ! function_exists( 'spacepress_post_thumbnail' ) ) :
 	/**
 	 * Displays an optional post thumbnail.
 	 *
 	 * Wraps the post thumbnail in an anchor element on index views, or a div
 	 * element when on single views.
 	 */
-	function spacepresspost_thumbnail() {
+	function spacepress_post_thumbnail() {
 		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 			return;
 		}

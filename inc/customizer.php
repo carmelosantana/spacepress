@@ -10,7 +10,7 @@
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-function spacepresscustomize_register( $wp_customize ) {
+function spacepress_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
@@ -20,26 +20,26 @@ function spacepresscustomize_register( $wp_customize ) {
 			'blogname',
 			array(
 				'selector'        => '.site-title a',
-				'render_callback' => 'spacepresscustomize_partial_blogname',
+				'render_callback' => 'spacepress_customize_partial_blogname',
 			)
 		);
 		$wp_customize->selective_refresh->add_partial(
 			'blogdescription',
 			array(
 				'selector'        => '.site-description',
-				'render_callback' => 'spacepresscustomize_partial_blogdescription',
+				'render_callback' => 'spacepress_customize_partial_blogdescription',
 			)
 		);
 	}
 }
-add_action( 'customize_register', 'spacepresscustomize_register' );
+add_action( 'customize_register', 'spacepress_customize_register' );
 
 /**
  * Render the site title for the selective refresh partial.
  *
  * @return void
  */
-function spacepresscustomize_partial_blogname() {
+function spacepress_customize_partial_blogname() {
 	bloginfo( 'name' );
 }
 
@@ -48,14 +48,14 @@ function spacepresscustomize_partial_blogname() {
  *
  * @return void
  */
-function spacepresscustomize_partial_blogdescription() {
+function spacepress_customize_partial_blogdescription() {
 	bloginfo( 'description' );
 }
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
-function spacepresscustomize_preview_js() {
+function spacepress_customize_preview_js() {
 	wp_enqueue_script( 'spacepress-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), SPACEPRESS_VERSION, true );
 }
-add_action( 'customize_preview_init', 'spacepresscustomize_preview_js' );
+add_action( 'customize_preview_init', 'spacepress_customize_preview_js' );
