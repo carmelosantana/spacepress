@@ -7,9 +7,9 @@
  * @package SpacePress
  */
 
-if ( ! defined( '_S_VERSION' ) ) {
+if ( ! defined( 'SPACEPRESS_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.0' );
+	define( 'SPACEPRESS_VERSION', '1.0.0' );
 }
 
 if ( ! function_exists( 'spacepresssetup' ) ) :
@@ -140,10 +140,10 @@ add_action( 'widgets_init', 'spacepresswidgets_init' );
  * Enqueue scripts and styles.
  */
 function spacepressscripts() {
-	wp_enqueue_style( 'spacepress-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'spacepress-style', get_stylesheet_uri(), array(), SPACEPRESS_VERSION );
 	wp_style_add_data( 'spacepress-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'spacepress-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'spacepress-navigation', get_template_directory_uri() . '/js/navigation.js', array(), SPACEPRESS_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

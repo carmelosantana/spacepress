@@ -43,7 +43,7 @@ add_action( 'after_setup_theme', 'spacepresswoocommerce_setup' );
  * @return void
  */
 function spacepresswoocommerce_scripts() {
-	wp_enqueue_style( 'spacepress-woocommerce-style', get_template_directory_uri() . '/woocommerce.css', array(), _S_VERSION );
+	wp_enqueue_style( 'spacepress-woocommerce-style', get_template_directory_uri() . '/woocommerce.css', array(), SPACEPRESS_VERSION );
 
 	$font_path   = WC()->plugin_url() . '/assets/fonts/';
 	$inline_font = '@font-face {
