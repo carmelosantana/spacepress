@@ -10,25 +10,25 @@
  */
 
 ?>
+</div><!-- /.row -->
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'spacepress' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'spacepress' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'spacepress' ), 'spacepress', '<a href="https://automattic.com/">Automattic</a>' );
-				?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+</div><!-- /.container -->
 
-<?php wp_footer(); ?>
+<footer class="blog-footer">
+    <p class="footer-copyright">&copy;
+        <?php
+            echo date_i18n(
+            /* translators: Copyright date format, see https://www.php.net/date */
+            _x( 'Y', 'copyright date format', 'spacepress' )
+        );
+        ?>
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
+    </p><!-- .footer-copyright -->
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
 
 </body>
+
 </html>
