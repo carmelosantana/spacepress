@@ -15,16 +15,17 @@ $query = new WP_Query( [
 ?>
 <div class="row">
     <div class="col">
-        <p class="card-title">Latest entries</p>
+        <p class="h6">Latest entries</p>
         <ul class="list-unstyled">
         <?php
             if ( $query->have_posts() ){
                 while ( $query->have_posts() ){
                     $query->the_post();
-                    echo '<a href="' . get_the_permalink() . '" >' . get_the_title() . '</a>';
+                    echo get_the_title() . ' (<a href="' . get_the_permalink() . '" >' . __('view more') . '</a>)';
                 }
             }
         ?>
         </ul>
+        [<a href=""><?php echo __( 'View all blog entries', 'spacepress' ); ?></a>]
     </div>
 </div>
