@@ -15,3 +15,24 @@ function spacepress_get_user_id() {
     if ( count( $administrators ) == 1 and count( $users ) == 1 )
         return $administrators[0]->ID;
 }
+
+function spacepress_get_age( $date, $format='%y' ){
+    $diff = date_diff( date_create( $date ), date_create( date("Y-m-d") ) );
+    
+    return $diff->format( $format );   
+}
+
+function spacepress_get_display_name( int $user_id=null, string $get='first_name' ): string {
+    if ( !$user = new WP_User( $user_id ) )
+        return bloginfo( 'name' );
+
+    switch ( $get ){
+        case 'display_name':
+        case 'first_name':
+        case 'last_name':
+        	if ( $user->$get )
+                return $user->first_name;
+    }
+
+    return bloginfo( 'name' );
+}
