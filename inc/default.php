@@ -28,7 +28,7 @@ function spacepress_get_user_options(): array {
             'name' => 'blurbs',
             'label' => 'Blurbs',
             'set_default_value' => spacepress_get_theme_options_default( 'blurbs' ),
-        ],        
+        ],              
     ];
 }
 
@@ -96,13 +96,8 @@ function spacepress_get_theme_options_default( string $option ): array {
                     'type' => 'text',
                 ],
                 [
-                    'name' => 'zodiac_sign',                        
-                    'label' => 'Zodiac Sign',
-                    'type' => 'text',
-                ],
-                [
-                    'name' => 'smoke_drink',                        
-                    'label' => 'Smoke / Drink',
+                    'name' => 'zodiac',                        
+                    'label' => 'Zodiac',
                     'type' => 'text',
                 ],
                 [
@@ -135,8 +130,8 @@ function spacepress_get_theme_options_default( string $option ): array {
                     'type' => 'rich_text',
                 ],
                 [
-                    'name' => 'television',
-                    'label' => 'Television',
+                    'name' => 'streaming',
+                    'label' => 'Streaming',
                     'type' => 'rich_text',
                 ],
                 [
@@ -181,9 +176,24 @@ function spacepress_get_theme_options_default( string $option ): array {
                     [
                         'name' => 'location',                        
                         'label' => 'Location',
-                        'type' => 'map',
+                        'type' => 'text',
                     ]
-            ];                
+            ];
+            
+            case 'top':
+                return [
+                    [
+                        'name' => 'name',                        
+                        'label' => 'Name',
+                        'type' => 'text',
+                    ],
+                    [
+                        'name' => 'label',                        
+                        'label' => 'Label',
+                        'type' => 'text',
+                    ],
+                ];
+            break;
     }
 
     return [];
