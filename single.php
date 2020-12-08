@@ -8,8 +8,9 @@
  */
 
 get_header();
+get_sidebar();
 ?>
-
+<div class="col-md-8 float-right">
 	<main id="primary" class="site-main">
 
 		<?php
@@ -34,7 +35,6 @@ get_header();
 		?>
 
 	</main><!-- #main -->
-
+</div>
 <?php
-get_sidebar();
 get_footer();
