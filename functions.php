@@ -1,10 +1,33 @@
 <?php
+declare(strict_types=1);
+
+/**
+ * Composer
+ */
 if ( !file_exists($composer = __DIR__ . '/vendor/autoload.php') ) {
     wp_die( __( 'Error locating autoloader. Please run <code>composer install</code>.', 'spacepress' ) );
 }
 
 require $composer;
-require __DIR__ . '/inc/init.php';
+
+/**
+ * Register Custom Navigation Walker
+ */
+function register_navwalker(){
+	require_once __DIR__ . '/inc/class-wp-bootstrap-navwalker.php';
+}
+add_action( 'after_setup_theme', 'register_navwalker' );
+
+require_once __DIR__ . '/inc/admin.php';
+require_once __DIR__ . '/inc/default.php';
+require_once __DIR__ . '/inc/functions.php';
+
+/**
+ * Setup Carbon Fields
+ */
+add_action( 'carbon_fields_register_fields', 'spacepress_carbon_attach_theme_options' );
+add_action( 'carbon_fields_register_fields', 'spacepress_carbon_attach_user_meta' );
+add_action( 'after_setup_theme', 'spacepress_carbon_load' );
 
 /**
  * SpacePress functions and definitions
@@ -16,7 +39,7 @@ require __DIR__ . '/inc/init.php';
 
 if ( ! defined( 'SPACEPRESS_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'SPACEPRESS_VERSION', '1.0.0' );
+	define( 'SPACEPRESS_VERSION', wp_get_theme()->get( 'Version' ) );
 }
 
 if ( ! function_exists( 'spacepress_setup' ) ) :
@@ -147,10 +170,27 @@ add_action( 'widgets_init', 'spacepress_widgets_init' );
  * Enqueue scripts and styles.
  */
 function spacepress_scripts() {
-	wp_enqueue_style( 'spacepress-style', get_stylesheet_uri(), array(), SPACEPRESS_VERSION );
+	// bootstrap
+	if ( carbon_get_theme_option( 'cdn_bootstrap' ) ){
+		$bootstrap_url = 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist';
+
+	} else {
+		$bootstrap_url = get_template_directory_uri() . '/js/bootstrap-5.0.0-alpha3';
+
+	}
+ 
+	wp_enqueue_style( 'bootstrap-style', $bootstrap_url . '/css/bootstrap.min.css', [], '5.0.0-alpha3' );
+	wp_enqueue_script( 'bootstrap-script', $bootstrap_url . '/js/bootstrap.bundle.min.js', [], '5.0.0-alpha3', true );
+
+	// theme
+	wp_enqueue_style( 'spacepress-style', get_stylesheet_uri(), [], SPACEPRESS_VERSION );
 	wp_style_add_data( 'spacepress-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'spacepress-navigation', get_template_directory_uri() . '/js/navigation.js', array(), SPACEPRESS_VERSION, true );
+	// custom theme
+	if ( $style = carbon_get_theme_option( 'theme' ) ){
+		$file = get_stylesheet_directory_uri() . '/styles/' . $style . '.css';
+		wp_enqueue_style( 'spacepress-custom-style', $file, [], SPACEPRESS_VERSION );
+	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
