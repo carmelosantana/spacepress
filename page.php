@@ -14,7 +14,7 @@
 
 get_header();
 ?>
-
+<div class="col-md-12">
 	<main id="primary" class="site-main">
 
 		<?php
@@ -32,7 +32,6 @@ get_header();
 		?>
 
 	</main><!-- #main -->
-
+</div>
 <?php
-get_sidebar();
 get_footer();
