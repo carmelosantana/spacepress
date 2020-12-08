@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 $args = extract(wp_parse_args($args, [
     'user_id' => 0,
     'name' => null,

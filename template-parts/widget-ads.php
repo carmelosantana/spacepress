@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 if ( !$ads = carbon_get_theme_option( 'ads' ) )
     return false;
 
