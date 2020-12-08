@@ -1,0 +1,120 @@
+/*--------------------------------------------------------------
+# Classic + Responsive
+--------------------------------------------------------------*/
+:root {
+	/*CSS HEX */
+	--sapphire: #2358b8ff;
+	--blue-gray: #6699ccff;
+	--baby-blue-eyes: #b1d0f0ff;
+	--beau-blue: #d5e8fbff;
+	--peach-crayola: #ffcc99ff;
+	--safety-orange-blaze-orange: #ff6600ff;
+	--rusty-red: #d02942ff;
+	--egyptian-blue: #003399ff;
+	/*Padding*/
+	--content-pad: 0.3em;
+}
+
+/*General*/
+body {
+	font-size: 0.9rem;
+}
+
+.sp-body-wrap a {
+	color:var(--egyptian-blue);
+	text-decoration: none;
+	font-weight: 500;
+}
+
+.sp-body-wrap a:hover {
+	color:var(--rusty-red);
+	text-decoration: underline;
+}
+
+/*Navbar*/
+.sp-header,
+.sp-primary-menu {
+	background-color:var(--sapphire);
+}
+
+.sp-primary-menu a.nav-link {
+	color: #FEFEFE;
+}
+
+.sp-primary-menu a.nav-link:hover {
+	color: #FEFEFE;
+}
+
+/*Title*/
+.site-title a {
+	text-decoration: none;
+	color:var(--bs-dark);
+}
+
+.site-title a:hover {
+	text-decoration: underline;
+}
+
+/*Mood*/
+.sp-mood {
+	margin-top: 0.5rem;
+}
+
+/*Global*/
+.sp-heading {
+	padding:var(--content-pad);
+	margin: 0;
+}
+
+/*Details + Interests*/
+.sp-details-interests {
+	border:1px solid var(--blue-gray);
+}
+
+.sp-details-interests h6.sp-heading {
+	background-color:var(--blue-gray);
+	color: #FFFFFF;
+}
+
+.sp-details-interests table .sp-heading {
+	padding:var(--content-pad);
+	font-weight: normal;
+}
+
+.sp-details-interests table .sp-heading {
+	background-color:var(--baby-blue-eyes);
+	border: 1px solid #FFFFFF;
+	padding:var(--content-pad);
+	min-width: 90px;
+}
+
+.sp-details-interests table .sp-details {
+	background-color:var(--beau-blue);
+	border: 1px solid #FFFFFF;
+	padding: 0.3rem;
+}
+
+/*Blurbs*/
+.sp-blurbs .sp-heading,
+.sp-top .sp-heading {
+	background-color:var(--peach-crayola);
+	color:var(--safety-orange-blaze-orange);
+}
+
+.sp-blurbs dt.h6 {
+	margin-top: 0.5rem;
+	color:var(--safety-orange-blaze-orange);
+}
+
+.sp-blurbs .sp-details {
+	margin: 0.5em 0 1em;
+	padding-bottom: 1em;
+}
+
+/*Top*/
+.sp-top .sp-image {
+	min-height: 150px;
+	width: 120px;
+	text-align: center;
+	margin: 0.5rem 2rem 0.5rem 0;
+}
