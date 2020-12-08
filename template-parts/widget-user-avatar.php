@@ -7,7 +7,31 @@ $args = extract(wp_parse_args($args, [
 if ( !$user_id and !$user_id = spacepress_get_user_id() )
     return false;
 
+// define callback, defaults to getting carbon_get_meta
+$details = [ 
+    'gender' => null,
+    'date_of_birth' => 'age',
+    'location' => null,
+];
+foreach ( $details as $detail => $callback ){
+    $value = carbon_get_user_meta( $user_id, $detail );
 
+    switch ( $callback ){
+        case 'age':
+            if ( $value )
+                $value = spacepress_get_age( $value ) . ' years old';
+
+        case 'gender':
+            $key = $detail . '_custom';
+            if ( $custom_value = carbon_get_user_meta( $user_id, $key ) ){
+                $value = $custom_value;
+            }
+
+        default:
+            $details[$detail] = $value;
+        break;
+    }
+}
 ?>
 <div class="col">
     <div class="row">
@@ -20,7 +44,7 @@ if ( !$user_id and !$user_id = spacepress_get_user_id() )
                 <?php
             else :
                 ?>
-                <p class="site-title mb-0"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+                <p class="site-title mb-0 h1"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
                 <?php
             endif;
             $spacepress_description = get_bloginfo( 'description', 'display' );
@@ -35,8 +59,31 @@ if ( !$user_id and !$user_id = spacepress_get_user_id() )
             <?php echo get_avatar( $user_id, 300 ); ?>
         </div>        
         <div class="col-6">
-            <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#">Continue reading</a>
+            <ul class="list-unstyled mx-auto">
+                <?php
+                    foreach ( $details as $detail => $data ){
+                        if ( $data )
+                            echo '<li>' . $data . '</li>';
+                    }
+                ?>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-flex sp-mood">
+        <?php
+            /**
+             * Mood
+             */
+            $mood = carbon_get_user_meta( $user_id, 'mood' );
+            $emoji = carbon_get_user_meta( $user_id, 'emoji' );
+            if ( $mood or $emoji )
+                echo __( '<strong>Mood: </strong>' ) . ( $mood ? $mood . ' ' : null ) . ( $emoji ? $emoji : null );
+
+            /**
+             * Photos, videos
+             */
+            ?>
         </div>
     </div>
 </div>
