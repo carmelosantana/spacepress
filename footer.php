@@ -8,7 +8,7 @@
  *
  * @package SpacePress
  */
-
+wp_footer();
 ?>
 </div><!-- /.row -->
 
